@@ -8,20 +8,23 @@ export default function useRegister() {
         setLoading(true);
         
         try {
-            const response = await fetch("http://127.0.0.1/user/register", {
+            const response = await fetch("http://127.0.0.1:3000/user/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     "email": email,
                     "password": password,
                     "username": username,
-                    "first-name": firstName,
-                    "last-name": lastName
+                    "first_name": firstName,
+                    "last_name": lastName,
+                    "account_active": 1
                 }),
                 credentials: "include"
             });
 
             const data = await response.json();
+
+            console.log(data);
 
             if (!response.ok) {
                 throw new Error (
@@ -42,7 +45,7 @@ export default function useRegister() {
 
         } catch (error) {
             setError(true);
-            console.log(error.message);
+            console.log("Error registering user: " + error.message);
             return false;
         } finally {
             setLoading(false);

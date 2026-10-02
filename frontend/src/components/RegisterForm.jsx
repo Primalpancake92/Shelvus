@@ -12,7 +12,9 @@ export default function RegisterForm({ error, loading, registerUser }) {
         lastName: ""
     });
 
-    const register = async () => {
+    const register = async (e) => {
+        e.preventDefault();
+
         await registerUser(
             formValues.email,
             formValues.password,

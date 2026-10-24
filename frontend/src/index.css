@@ -1,13 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
+@theme {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Shelvus palette (Soft Sage & Ivory) */
+  --color-background: #e7eae1; /* main background: muted ivory-sage */
+  --color-primary: #668573;    /* buttons and accents: primary sage */
+  --color-foreground: #283e35; /* headings and main text: dark forest green */
+  --color-secondary: #d5dfd3;  /* cards and secondary backgrounds: light sage */
+  --color-accent: #c3ab8b;     /* decorative accents: warm sand */
+  --color-muted: #61796b;      /* descriptions and subtitles */
+}
+
 :root{ 
-  --primary-colour: rgba(25, 25, 25, 1);
-  --secondary-colour: rgb(211, 26, 211);
-  --tertiary-colour: rgba(0, 230, 255, 0.859);
+  /* Older names, kept pointing at the palette so existing classes follow it. */
+  --primary-colour: var(--color-background);
+  --secondary-colour: var(--color-primary);
+  --tertiary-colour: var(--color-accent);
 }
 
 html {
-  background-color: var(--primary-colour);
+  /* Lets full-window-width layers (e.g. the features bands) extend past the
+     1500px body without adding a sideways scrollbar. */
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   display: flex;
   margin: 0;
   justify-content: center;

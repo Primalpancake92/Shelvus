@@ -4,7 +4,7 @@ const dots = [
     top: "top-10",
     left: "left-75",
     size: "w-70 h-70",
-    colour: "bg-[rgb(25,175,255)]",
+    colour: "bg-primary",
     rounded: "rounded-full"
   },
   {
@@ -12,7 +12,7 @@ const dots = [
     top: "-bottom-100",
     left: "right-75", 
     size: "w-175 h-175",
-    colour: "bg-(--tertiary-colour)",
+    colour: "bg-accent",
     rounded: "rounded-full"
   },
   {
@@ -20,7 +20,7 @@ const dots = [
     top: "top-55",
     left: "right-55",
     size: "w-35 h-35",
-    colour: "bg-[rgb(120,25,175)]",
+    colour: "bg-muted",
     rounded: "rounded-full"
   },
   {
@@ -28,7 +28,7 @@ const dots = [
     top: "bottom-25",
     left: "left-150",
     size: "w-55 h-55",
-    colour: "bg-(--secondary-colour)",
+    colour: "bg-secondary",
     rounded: "rounded-full"
   }
 ];

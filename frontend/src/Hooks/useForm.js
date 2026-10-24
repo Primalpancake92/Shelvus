@@ -10,9 +10,8 @@ export default function useForm(initialValues) {
 
         setFormValues((prev) => ({
             ...prev, [name]: value
-        }));    
+        }));
     };
 
     return { formValues, handleChange };
 }
-

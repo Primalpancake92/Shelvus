@@ -6,7 +6,9 @@ export default function useRegister() {
 
     const registerUser = async (email, password, username, firstName, lastName) => {
         setLoading(true);
-        
+        setError(false);
+
+        // making a fetch call on the register endpoint.
         try {
             const response = await fetch("http://127.0.0.1:3000/user/register", {
                 method: "POST",
@@ -21,10 +23,9 @@ export default function useRegister() {
                 }),
                 credentials: "include"
             });
-
+            
+            // jsonifies returned data into object literal.
             const data = await response.json();
-
-            console.log(data);
 
             if (!response.ok) {
                 throw new Error (
@@ -51,8 +52,7 @@ export default function useRegister() {
             setLoading(false);
         }
     };
-
+    
+    // returns the fetch call via the endpoint, loading flag, and error flag.
     return { error, loading, registerUser };
-
-    // note the registerUser is a method that returns to allow for navigation.
 }

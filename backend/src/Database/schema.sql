@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS Borrowing (
     user_email TEXT NOT NULL,
     book_id INTEGER NOT NULL,
     borrow_date TEXT NOT NULL DEFAULT (datetime('now')),
-    due_date DATE,
-    return_date DATE,
+    due_date TEXT,
+    return_date TEXT,
     FOREIGN KEY (user_email) REFERENCES User(email)
         ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (book_id) REFERENCES Book(id)

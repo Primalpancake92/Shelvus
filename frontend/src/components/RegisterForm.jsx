@@ -30,7 +30,7 @@ export default function RegisterForm({ error, loading, registerUser }) {
     };
 
     return (
-        <form onSubmit={register} className="flex w-full max-w-lg flex-col rounded-3xl border
+        <form onSubmit={register} className="flex w-full max-w-xl flex-col rounded-3xl border
         border-foreground/10 bg-[#f4f3ee] px-8 py-10 font-display text-foreground
         shadow-[0_20px_40px_rgba(40,62,53,0.12)]">
             <div className="flex flex-col items-center text-center">
@@ -44,8 +44,8 @@ export default function RegisterForm({ error, loading, registerUser }) {
                 </p>
             </div>
 
-            <div className="mt-8 flex flex-col gap-5">
-                <div className="grid grid-cols-2 gap-4">
+            <div className="mt-8 flex flex-col gap-5 mx-5">
+                <div className="grid grid-cols-2 gap-8">
                     <Field label={"First name"} name={"firstName"} type={"text"}
                     placeholder="John"
                     value={formValues.firstName} onChange={handleChange} />

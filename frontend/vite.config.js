@@ -8,4 +8,8 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  // Tests run in jsdom, a fake browser, so hooks and components can render.
+  test: {
+    environment: "jsdom",
+  },
 })

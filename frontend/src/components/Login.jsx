@@ -25,7 +25,7 @@ function LoginForm() {
     return (
         <div className="relative flex w-full min-h-screen justify-center items-center
         z-11 px-4 font-display">
-            <form className="flex w-full max-w-md flex-col rounded-3xl border
+            <form className="flex w-full max-w-lg flex-col rounded-3xl border
             border-foreground/10 bg-[#f4f3ee] px-8 py-10 text-foreground
             shadow-[0_20px_40px_rgba(40,62,53,0.12)]"
             onSubmit={handleSubmit}>
@@ -38,7 +38,7 @@ function LoginForm() {
                     <p className="mt-2 text-muted">Sign in to your Shelvus account</p>
                 </div>
 
-                <div className="mt-8 flex flex-col gap-6">
+                <div className="mt-8 flex flex-col gap-6 mx-5">
                     <Field label="Email address" name="email" type="email" icon="mail"
                     placeholder="Enter your email"
                     value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -63,10 +63,6 @@ function LoginForm() {
                 </div>
 
                 <div className="my-8 flex justify-center gap-3">
-                    {/* Each button centres one inner div holding its arrow + text. The
-                        text-box trim removes the font's uneven top/bottom spacing, and the
-                        arrow's 3px negative margin cancels the empty space built into the
-                        icon, so the div's edges match what you actually see. */}
                     <Link to="/" className="flex w-32 items-center justify-center rounded-full
                     border border-foreground/30 py-3.5 font-medium leading-none
                     hover:bg-secondary transition-colors duration-300">

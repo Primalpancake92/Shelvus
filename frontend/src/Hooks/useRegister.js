@@ -3,10 +3,13 @@ import { useState } from "react";
 export default function useRegister() {
     const [ loading, setLoading ] = useState(null);
     const [ error, setError ] = useState(false);
+    const [ userRegistered, setUserRegistered ] = useState(false);
 
     const registerUser = async (email, password, username, firstName, lastName) => {
         setLoading(true);
         setError(false);
+        setUserRegistered(false);
+        let success = true;
 
         // making a fetch call on the register endpoint.
         try {
@@ -29,8 +32,7 @@ export default function useRegister() {
 
             if (!response.ok) {
                 throw new Error (
-                    `Response error with ${email}, ${password}, ${firstName},
-                    and ${lastName}.`
+                    `${data.message}`
                 )
             }
 
@@ -41,18 +43,21 @@ export default function useRegister() {
             if (!data) {
                 throw new error("Registration failed.");
             }
-        
-            return true;
+            
+            setUserRegistered(true);
+            
+            return success;
 
         } catch (error) {
             setError(true);
+            success = false;
             console.log("Error registering user: " + error.message);
-            return false;
+            return success;
         } finally {
             setLoading(false);
         }
     };
     
     // returns the fetch call via the endpoint, loading flag, and error flag.
-    return { error, loading, registerUser };
+    return { error, loading, userRegistered, registerUser };
 }

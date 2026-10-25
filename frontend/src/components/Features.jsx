@@ -71,10 +71,12 @@ function Divider() {
 
 // A full-window-width background layer behind a band of content. It sits past the
 // 1500px body (html clips the sideways overflow), so its backdrop blur reaches
-// the screen edges instead of stopping at the body.
+// the screen edges instead of stopping at the body. It uses 100cqw rather than
+// w-screen so it stops at the scrollbar; running under it makes the blur sample
+// past the window edge, which shows up as a flickering dark strip.
 function Band({ className }) {
     return (
-        <div aria-hidden="true" className={`absolute inset-y-0 left-1/2 -z-10 w-screen
+        <div aria-hidden="true" className={`absolute inset-y-0 left-1/2 -z-10 w-[100cqw]
         -translate-x-1/2 ${className}`}></div>
     );
 }

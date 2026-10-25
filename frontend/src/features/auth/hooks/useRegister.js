@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { API_URL } from "../../../lib/api";
 
 export default function useRegister() {
     const [ loading, setLoading ] = useState(null);
     const [ error, setError ] = useState(false);
     const [ userRegistered, setUserRegistered ] = useState(false);
 
-    const registerUser = async (email, password, username, firstName, lastName) => {
+    const registerUser = async (
+        email, password, username, firstName, lastName
+    ) => {
         setLoading(true);
         setError(false);
         setUserRegistered(false);
@@ -13,7 +16,7 @@ export default function useRegister() {
 
         // making a fetch call on the register endpoint.
         try {
-            const response = await fetch("http://127.0.0.1:3000/user/register", {
+            const response = await fetch(`${API_URL}/user/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -33,11 +36,7 @@ export default function useRegister() {
             if (!response.ok) {
                 throw new Error (
                     `${data.message}`
-                )
-            }
-
-            if (response.status === "Error") {
-                throw new error("User could not be registered");
+                );
             }
 
             if (!data) {
@@ -57,7 +56,8 @@ export default function useRegister() {
             setLoading(false);
         }
     };
-    
+
+
     // returns the fetch call via the endpoint, loading flag, and error flag.
     return { error, loading, userRegistered, registerUser };
 }

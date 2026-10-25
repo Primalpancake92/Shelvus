@@ -1,23 +1,38 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import useAuth from "../Hooks/useAuth";
-import WaveBackground from "./WaveBackground";
-import Icon from "./Icon";
-import Field from "./Field";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import useForm from "../../../hooks/useForm";
+import { validateLogin } from "../validation/login";
+import Field from "../../../components/ui/Field";
+import FormActions from "./FormActions";
+import FormHeader from "./FormHeader";
+import Icon from "../../../components/ui/Icon";
+import WaveBackground from "../../../components/layout/WaveBackground";
 
 function LoginForm() {
     const navigate = useNavigate();
-    const { loginUser, error, loading, user } = useAuth();
-    const [ email, setEmail ] = useState("");
-    const [ password, setPassword ] = useState("");
+    const { loginUser } = useAuth();
+    const { formValues, handleChange } = useForm({
+        email: "",
+        password: ""
+    });
+    const [ formErrors, setFormErrors ] = useState({});
     const [ showPassword, setShowPassword ] = useState(false);
 
-    const handleSubmit = async (event) => {
+    const login = async (event) => {
         event.preventDefault();
 
-        const login = await loginUser(email, password);
+        // Check the inputs first; only a well-formed form is sent to the server.
+        const errors = validateLogin(formValues);
+        setFormErrors(errors);
 
-        if (login) {
+        if (Object.keys(errors).length > 0) {
+            return;
+        }
+
+        const loginSuccess = await loginUser(formValues.email, formValues.password);
+
+        if (loginSuccess) {
             navigate("/home");
         }
     };
@@ -25,28 +40,22 @@ function LoginForm() {
     return (
         <div className="relative flex w-full min-h-screen justify-center items-center
         z-11 px-4 font-display">
-            <form className="flex w-full max-w-lg flex-col rounded-3xl border
+            <form onSubmit={login} className="flex w-full max-w-lg flex-col rounded-3xl border
             border-foreground/10 bg-[#f4f3ee] px-8 py-10 text-foreground
-            shadow-[0_20px_40px_rgba(40,62,53,0.12)]"
-            onSubmit={handleSubmit}>
-                <div className="flex flex-col items-center text-center">
-                    <div className="flex w-14 h-14 items-center justify-center rounded-full
-                    bg-secondary text-primary">
-                        <Icon name="book" className="w-6 h-6" />
-                    </div>
-                    <h1 className="mt-5 text-2xl font-bold">Welcome back</h1>
-                    <p className="mt-2 text-muted">Sign in to your Shelvus account</p>
-                </div>
+            shadow-[0_20px_40px_rgba(40,62,53,0.12)]">
+                <FormHeader title="Welcome back" subtitle="Sign in to your Shelvus account" />
 
-                <div className="mt-8 flex flex-col gap-6 mx-5">
+                <div className="mt-8 flex flex-col gap-2 mx-5">
                     <Field label="Email address" name="email" type="email" icon="mail"
                     placeholder="Enter your email"
-                    value={email} onChange={(e) => setEmail(e.target.value)} />
+                    value={formValues.email} onChange={handleChange}
+                    error={formErrors.email} />
 
                     <Field label="Password" name="password" icon="lock"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
-                    value={password} onChange={(e) => setPassword(e.target.value)}
+                    value={formValues.password} onChange={handleChange}
+                    error={formErrors.password}
                     labelAction={
                         // No forgot-password page yet; wire this up once one exists.
                         <button type="button" className="text-sm text-primary hover:underline">
@@ -62,24 +71,7 @@ function LoginForm() {
                     } />
                 </div>
 
-                <div className="my-8 flex justify-center gap-3">
-                    <Link to="/" className="flex w-32 items-center justify-center rounded-full
-                    border border-foreground/30 py-3.5 font-medium leading-none
-                    hover:bg-secondary transition-colors duration-300">
-                        <div className="flex items-center gap-1.5">
-                            <Icon name="arrowLeft" className="-ml-0.75 w-4 h-4" />
-                            <span className="[text-box:trim-both_cap_alphabetic]">Back</span>
-                        </div>
-                    </Link>
-                    <button type="submit" className="flex w-32 items-center justify-center
-                    rounded-full bg-primary py-3.5 font-semibold text-background leading-none
-                    hover:bg-[#587464] transition-colors duration-300">
-                        <div className="flex items-center gap-1.5">
-                            <span className="[text-box:trim-both_cap_alphabetic]">Sign In</span>
-                            <Icon name="arrowRight" className="-mr-0.75 w-4 h-4" />
-                        </div>
-                    </button>
-                </div>
+                <FormActions backTo="/" submitText="Sign In" />
 
                 <p className="border-t border-foreground/10 pt-6 text-center text-sm text-muted">
                     Don't have an account?{" "}

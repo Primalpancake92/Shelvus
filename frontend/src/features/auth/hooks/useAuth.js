@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { API_URL } from "../../../lib/api";
 
 export default function useAuth() {
     const [ loading, setLoading ] = useState(false);
@@ -9,7 +10,7 @@ export default function useAuth() {
         try {
             setLoading(true);
 
-            const response = await fetch("http://127.0.0.1:3000/user/login",
+            const response = await fetch(`${API_URL}/user/login`,
                 {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

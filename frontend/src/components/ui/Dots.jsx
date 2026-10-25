@@ -1,4 +1,4 @@
-import dots from "../util/dots";
+import dots from "../../lib/dots";
 import { useState } from "react";
 
 function Dots({ dotsArr = dots }) {

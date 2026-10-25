@@ -1,21 +1,13 @@
 import Label from "./Label";
 import Icon from "./Icon";
 
-// A labelled input that any form can reuse.
-//
-//   label        text for the label
-//   name         input name (also used as its id, so the label is linked to it)
-//   icon         optional icon name shown inside the input on the left
-//   labelAction  optional element on the right of the label row (e.g. a link)
-//   trailing     optional element inside the input on the right (e.g. a toggle)
-//   ...inputProps  everything else (type, value, onChange, placeholder, required,
-//                  autoComplete, ...) is passed straight to the <input>
 export default function Field ({
-    label, name, icon, labelAction, trailing, type = "text", ...inputProps
+    label, name, icon, labelAction, trailing, type = "text", error, hint,
+    ...inputProps
 }) {
 
     return(
-        <div className="relative flex w-full flex-col gap-2">
+        <div className="relative flex w-full flex-col mb-1 gap-0.5">
             <Label name={label} htmlFor={name}>{labelAction}</Label>
             <div className="relative">
                 {icon && (
@@ -31,6 +23,11 @@ export default function Field ({
                         {trailing}
                     </div>
                 )}
+                
+            </div>
+            <div className="flex justify-left text-xs mt-1">{hint}</div>
+            <div className="relative text-red-500 text-xs h-2">
+                {error}
             </div>
         </div>
     )

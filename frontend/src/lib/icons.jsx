@@ -1,4 +1,4 @@
-// Stroke icon paths (24x24 viewBox), rendered through components/Icon.jsx.
+// Stroke icon paths (24x24 viewBox), rendered through components/ui/Icon.jsx.
 const icons = {
     arrowRight: (
         <>
@@ -147,7 +147,27 @@ const icons = {
             <path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10" />
             <path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
         </>
-    )
+    ),
+    clock: (
+        <>
+            <circle cx="12" cy="12" r="9" />
+            <path d="M12 7v5l3 2" />
+        </>
+    ),
+    check: <path d="M20 6 9 17l-5-5" />,
+    calendar: (
+        <>
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4M8 2v4M3 10h18" />
+        </>
+    ),
+    feather: (
+        <>
+            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z" />
+            <path d="M16 8 2 22M17.5 15H9" />
+        </>
+    ),
+    chevronDown: <path d="m6 9 6 6 6-6" />
 };
 
 export default icons;

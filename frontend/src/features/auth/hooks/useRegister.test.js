@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook, act, waitFor } from "@testing-library/react";
 import useRegister from "./useRegister";
+import { API_URL } from "../../../lib/api";
 
 const user = {
     email: "test.user@example.com",
@@ -49,7 +50,7 @@ describe("useRegister", () => {
 
         expect(fetch).toHaveBeenCalledTimes(1);
         const [url, options] = fetch.mock.calls[0];
-        expect(url).toBe("http://127.0.0.1:3000/user/register");
+        expect(url).toBe(`${API_URL}/user/register`);
         expect(options.method).toBe("POST");
         expect(options.credentials).toBe("include");
         expect(JSON.parse(options.body)).toEqual({

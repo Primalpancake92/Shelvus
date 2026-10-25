@@ -1,4 +1,4 @@
-import Icon from "./Icon";
+import Icon from "../../components/ui/Icon";
 
 // Mock UI pieces shown beside each feature on the landing page. They are
 // decorative only, so every illustration is hidden from screen readers.

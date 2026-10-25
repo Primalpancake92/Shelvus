@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import WaveBackground from "../components/WaveBackground";
-import Icon from "../components/Icon";
-import Features from "../components/Features";
-import BookStack from "../components/BookStack";
-import Footer from "../components/Footer";
+import WaveBackground from "../components/layout/WaveBackground";
+import Icon from "../components/ui/Icon";
+import Features from "./_components/Features";
+import BookStack from "./_components/BookStack";
+import Footer from "./_components/Footer";
 
 function RegisterBtn() {
     return (

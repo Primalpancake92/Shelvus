@@ -13,5 +13,9 @@ export default function useForm(initialValues) {
         }));
     };
 
-    return { formValues, handleChange };
+    const resetForm = (event) => {
+        setFormValues(initialValues);
+    }
+
+    return { formValues, handleChange, resetForm };
 }

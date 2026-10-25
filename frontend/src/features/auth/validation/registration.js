@@ -1,6 +1,6 @@
-const validateEmail = (email) => {
-    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { EMAIL_RE, PASSWORD_RE, USERNAME_RE } from "./patterns";
 
+const validateEmail = (email) => {
     if (!email) {
         return false;
     }
@@ -13,8 +13,6 @@ const validateEmail = (email) => {
 };
 
 const validatePassword = (password) => {
-    const PASSWORD_RE = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
-    
     if (!password) {
         return false;
     }
@@ -31,7 +29,7 @@ const validateName = (name) => {
         return false;
     }
 
-    if (name.length < 5) {
+    if (name.length < 2) {
         return false;
     }
 
@@ -39,8 +37,6 @@ const validateName = (name) => {
 };
 
 const validateUsername = (username) => {
-    const USERNAME_RE = /^(?![ ])(?!.*[ ]{2})[a-zA-R0-9 ]{3,12}(#[0-9]{3,4})?$/;
-    
     if (!username) {
         return false;
     }
@@ -67,8 +63,8 @@ export const validateRegistration = (values) => {
         email: "You have entered an invalid email. Please enter a valid email.",
         password: `You have entered an invalid password. Please enter a valid
         password.`,
-        firstName: "Invalid first name. Please enter a valid first name.",
-        lastName: "Invalid last name. Please enter a valid last name.",
+        firstName: "Please enter a valid first name.",
+        lastName: "Please enter a valid last name.",
         username: "You entered an invalid username. Please enter a valid username."
     }
     

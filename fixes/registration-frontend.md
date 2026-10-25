@@ -1,6 +1,6 @@
 # Registration frontend
 
-Files: `frontend/src/Hooks/useRegister.js`, `frontend/src/components/RegisterForm.jsx`, `frontend/src/validation/registration.js`
+Files: `frontend/src/Hooks/useRegister.js`, `frontend/src/components/RegisterForm.jsx`, `frontend/src/util/registration.js`, `frontend/src/util/patterns.js`
 
 ## Medium
 
@@ -8,7 +8,7 @@ Files: `frontend/src/Hooks/useRegister.js`, `frontend/src/components/RegisterFor
 
 - [ ] **The hook throws away the server's message.** `useRegister` only keeps `error` as `true`/`false`. Store the message, for example `setError(error.message)`, so the form can show "The email or username is already taken."
 
-- [ ] **Validation isn't wired up.** `validateRegistration` in `validation/registration.js` exists, but `RegisterForm` never imports or calls it, so every submit goes straight to the server.
+- [ ] **Validation isn't wired up.** `validateRegistration` in `util/registration.js` exists, but `RegisterForm` never imports or calls it, so every submit goes straight to the server.
 
 - [ ] **The username pattern rejects capital S to Z.** In `validateUsername`, `[a-zA-R0-9 ]` should be `[a-zA-Z0-9 ]`. As written, "Sam" or "Zoe" fails.
 

@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import Account from "../pages/Account";
-import Borrow from "../pages/Borrow";
-import Return from "../pages/Return"
-import Home from "../pages/Home";
-import Hero from "../pages/Hero";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+import Account from "./account/page";
+import Borrow from "./borrow/page";
+import Return from "./return/page"
+import Home from "./home/page";
+import Hero from "./page";
+import Login from "./login/page";
+import Register from "./register/page";
 
 export default function AppRouter() {
     return (

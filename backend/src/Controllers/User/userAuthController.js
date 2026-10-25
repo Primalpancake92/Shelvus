@@ -72,11 +72,22 @@ const registerUser = async (req, res) => {
             username, password, account_active
         });
 
-        return res.status(200).json({
-            message: `${first_name} ${last_name} has been successfully registered`
+        return res.status(201).json({
+            message: `${first_name} ${last_name} has been successfully registered.`
         });
     } catch (error) {
+        if (
+            error.code === "SQLITE_CONSTRAINT_UNIQUE" || error.code ===
+            "SQLITE_CONSTRAINT_PRIMARYKEY"
+        ) {
+            return res.status(409).json({
+                status: "Error",
+                message: "The email or username is already taken."
+            });
+        }
+
         return res.status(500).json({
+            status: "Error",
             message: "Server could not create user.",
             error: error.message
         })

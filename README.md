@@ -29,7 +29,8 @@ It's also a full-stack learning project: a React frontend and an Express + SQLit
 
 | | Feature | What it does | Status |
 |---|---|---|---|
-| 🔐 | **Accounts** | Register, log in and log out. You stay logged in with a session cookie, and the register form validates input before it's sent. | ✅ Working |
+| 🔐 | **Accounts** | Register, log in and log out. You stay logged in with a session cookie, the register form validates input before it's sent, and login tells you whether your details were wrong or the server had a problem. | ✅ Working |
+| 🧭 | **App layout** | Once you're logged in, every page shares one navbar, so Home, Browse, Borrow, Return and Account are a click away. | ✅ Working |
 | 📖 | **Book catalogue** | Add, find, update and remove books. Each book has a title, genre and publication year. | 🛠️ API done, UI in progress |
 | 🔎 | **Browse & search** | Search the collection and filter by genre, author or publication year. | 🛠️ In progress |
 | 🔄 | **Borrow & return** | Borrow an available book and return it when you're done. Due dates are tracked automatically. | 🛠️ Database ready, routes in progress |
@@ -90,11 +91,19 @@ cd Shelvus
 
 ```bash
 cd backend
+cp .env.example .env
 npm install
 node src/app.js
 ```
 
-The API runs on **http://localhost:3000**. On start-up it creates `Library.db` and fills it with sample users and books.
+The API runs on **http://localhost:3000**. On start-up it creates `Library.db` and fills it with sample users and about 100 books.
+
+The backend's `.env` has two settings:
+
+| Variable | Default | What it's for |
+|---|---|---|
+| `PORT` | `3000` | Port the API listens on |
+| `CLIENT_URL` | `http://localhost:5173` | Frontend address allowed through CORS |
 
 > [!NOTE]
 > The database is reset every time the server starts, so accounts you register won't survive a restart yet.
@@ -105,11 +114,25 @@ In a second terminal:
 
 ```bash
 cd frontend
+cp .env.example .env
 npm install
 npm run dev
 ```
 
 Open **http://localhost:5173** in your browser.
+
+The frontend's `.env` holds `VITE_API_URL`, the address of the backend (`http://127.0.0.1:3000` by default). If you change the backend's `PORT`, change this to match. Anything in this file ends up in the browser, so never put secrets in it.
+
+### 4. Log in
+
+You can register a new account, or use one of the sample accounts:
+
+| Email | Password |
+|---|---|
+| `john.smith@example.com` | `Shelves@2024` |
+| `emma.johnson@example.com` | `Bookworm!88` |
+
+The full list is in [`backend/src/Database/userData.js`](backend/src/Database/userData.js).
 
 ### Frontend scripts
 
@@ -137,26 +160,49 @@ Open **http://localhost:5173** in your browser.
 | `PUT` | `/book/update-book` | Update a book |
 | `DELETE` | `/book/delete-book` | Remove a book |
 
+## Pages
+
+| Route | Page | Shared navbar |
+|---|---|---|
+| `/` | Landing page | |
+| `/login` | Log in | |
+| `/register` | Create an account | |
+| `/home` | Your home page (being rebuilt) | ✅ |
+| `/browse` | Browse the catalogue (in progress) | ✅ |
+| `/borrow` | Borrow a book (in progress) | ✅ |
+| `/return` | Return a book (in progress) | ✅ |
+| `/account` | Your account | ✅ |
+
+Pages marked ✅ sit inside `UserLayout`, which adds the shared navbar.
+
 ## Project structure
 
 ```
 Shelvus/
 ├── backend/
+│   ├── .env.example          # PORT and CLIENT_URL
 │   └── src/
 │       ├── app.js            # Express server, sessions and CORS
 │       ├── config/           # Database connection
-│       ├── Controllers/      # Request handlers for users and books
-│       ├── Database/         # Schema, sample data and start-up script
+│       ├── Controllers/      # Request handlers (User/, Book/)
+│       ├── Database/         # Schema, sample users and books, start-up script
 │       ├── Models/           # Database queries
 │       ├── routes/           # API routes
-│       └── utils/            # Shared helpers (e.g. validation regexes)
+│       └── utils/            # Shared helpers
 ├── frontend/
+│   ├── .env.example          # VITE_API_URL
 │   └── src/
-│       ├── components/       # Reusable UI pieces
-│       ├── Hooks/            # Custom React hooks (auth, forms, register)
-│       ├── pages/            # Home, Login, Register, Borrow, Return, Account
-│       ├── routes/           # Page routing
-│       └── validation/       # Form validation rules
+│       ├── app/              # One folder per page (page.jsx) plus AppRouter
+│       │   └── _components/  # Pieces used by the landing page and navbar
+│       ├── components/
+│       │   ├── layout/       # UserLayout, backgrounds, nav
+│       │   └── ui/           # Small reusable pieces (Field, Label, Modal, Icon)
+│       ├── features/         # Code grouped by feature
+│       │   ├── auth/         # Login/register forms, hooks and validation
+│       │   ├── books/        # Book components
+│       │   └── users/        # User hooks
+│       ├── hooks/            # Shared hooks (useForm)
+│       └── lib/              # API client, icons and helpers
 └── fixes/                    # Known issues still to sort out
 ```
 
@@ -166,6 +212,8 @@ Shelvus/
 - [x] Book catalogue API
 - [x] Borrowing table with loan rules
 - [x] Landing page and design theme
+- [x] Shared navbar layout for logged-in pages
+- [ ] Home page dashboard
 - [ ] Borrow and return routes and pages
 - [ ] Search and filter in the UI
 - [ ] Account page with loan history
@@ -177,7 +225,7 @@ Known bugs and clean-up tasks are tracked in [`fixes/`](fixes/README.md).
 
 ## Troubleshooting
 
-**CORS errors or "connection refused" in the browser?** Something else may be using port 3000. Check with `ss -ltnp | grep 3000`, or start the backend on another port with `PORT=3001 node src/app.js`. See [`fixes/dev-setup.md`](fixes/dev-setup.md) for more.
+**CORS errors or "connection refused" in the browser?** Something else may be using port 3000. Check with `ss -ltnp | grep 3000`, or move the backend to another port by setting `PORT=3001` in `backend/.env` and `VITE_API_URL=http://127.0.0.1:3001` in `frontend/.env`. See [`fixes/dev-setup.md`](fixes/dev-setup.md) for more.
 
 ---
 

@@ -14,9 +14,9 @@ const loginUser = async (req, res) => {
     try {
         const user = await User.findByEmail(email);
 
-        if (user.password !== password) {
+        if (!user || user.password !== password) {
             return res.status(401).json({
-                status: "Error: Not authorised ",
+                status: "Error: Not authorised.",
                 message: `Credentials are invalid. Please enter the correct email
                 and password.`
             });

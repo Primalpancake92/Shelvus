@@ -3,7 +3,7 @@ import { API_URL } from "../../../lib/api";
 
 export default function useAuth() {
     const [ loading, setLoading ] = useState(false);
-    const [ error, setError ] = useState(false);
+    const [ error, setError ] = useState(null);
     const [ user, setUser ] = useState({});
 
     const loginUser = async (email, password) => {
@@ -24,12 +24,12 @@ export default function useAuth() {
 
             const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error("User data unable to load.");
+            if (response.status === 500) {
+                throw new Error("Internal server error.");
             }
-
-            if (response.status === "Error") {
-                throw new Error("Invalid user details entered.");
+            
+            if (response.status === 401) {
+                throw new Error("User not valid. Invalid email or password.");
             }
 
             if (!data) {
@@ -43,7 +43,7 @@ export default function useAuth() {
             return true;
         } catch (error) {
             console.log(error.message);
-            setError(true);
+            setError(error.message);
             return false;
         } finally {
             setLoading(false);

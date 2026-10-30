@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import useRegister from "../../features/auth/hooks/useRegister";
-import Dots from "../../components/ui/Dots";
 import RegisterForm from "../../features/auth/components/RegisterForm";
 import WaveBackground from "../../components/layout/WaveBackground";
 

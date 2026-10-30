@@ -11,7 +11,7 @@ import WaveBackground from "../../../components/layout/WaveBackground";
 
 function LoginForm() {
     const navigate = useNavigate();
-    const { loginUser } = useAuth();
+    const { loginUser, error, loading, user } = useAuth();
     const { formValues, handleChange } = useForm({
         email: "",
         password: ""
@@ -69,6 +69,7 @@ function LoginForm() {
                             <Icon name={showPassword ? "eyeOff" : "eye"} className="w-4 h-4" />
                         </button>
                     } />
+                    <p className="m-0 p-0 relative flex items-center text-xs">{error}</p>
                 </div>
 
                 <FormActions backTo="/" submitText="Sign In" />

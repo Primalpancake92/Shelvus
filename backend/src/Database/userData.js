@@ -1,18 +1,21 @@
+// Every entry passes the registration checks in
+// frontend/src/features/auth/validation/patterns.js, so these accounts can be
+// logged into with the passwords below.
 const userData = [
     {
         email: "john.smith@example.com",
         first_name: "John",
         last_name: "Smith",
         username: "johnsmith",
-        password: "hashed_password_123",
+        password: "Shelves@2024",
         account_active: 1
     },
     {
         email: "emma.johnson@example.com",
         first_name: "Emma",
         last_name: "Johnson",
-        username: "emmaj",
-        password: "hashed_password_456",
+        username: "emma j#2041",
+        password: "Bookworm!88",
         account_active: 1
     },
     {
@@ -20,7 +23,7 @@ const userData = [
         first_name: "Michael",
         last_name: "Brown",
         username: "mikebrown",
-        password: "hashed_password_789",
+        password: "Chapter7$read",
         account_active: 1
     },
     {
@@ -28,23 +31,23 @@ const userData = [
         first_name: "Sarah",
         last_name: "Wilson",
         username: "sarahwilson",
-        password: "hashed_password_321",
+        password: "Library%Card9",
         account_active: 0
     },
     {
         email: "david.taylor@example.com",
         first_name: "David",
         last_name: "Taylor",
-        username: "davet",
-        password: "hashed_password_654",
+        username: "davet#517",
+        password: "Paperback*42",
         account_active: 1
     },
     {
         email: "olivia.anderson@example.com",
         first_name: "Olivia",
         last_name: "Anderson",
-        username: "oliviaa",
-        password: "hashed_password_987",
+        username: "olivia reads",
+        password: "Novel?Night3",
         account_active: 1
     },
     {
@@ -52,15 +55,15 @@ const userData = [
         first_name: "James",
         last_name: "Thomas",
         username: "jamest",
-        password: "hashed_password_111",
+        password: "Bookmark&55",
         account_active: 0
     },
     {
         email: "sophia.martin@example.com",
         first_name: "Sophia",
         last_name: "Martin",
-        username: "sophiam",
-        password: "hashed_password_222",
+        username: "sophiam#8830",
+        password: "Fiction@Fan1",
         account_active: 1
     },
     {
@@ -68,7 +71,7 @@ const userData = [
         first_name: "William",
         last_name: "Jackson",
         username: "willjack",
-        password: "hashed_password_333",
+        password: "Hardcover!19",
         account_active: 1
     },
     {
@@ -76,7 +79,7 @@ const userData = [
         first_name: "Ava",
         last_name: "White",
         username: "avawhite",
-        password: "hashed_password_444",
+        password: "Shelf$Life24",
         account_active: 0
     }
 ];

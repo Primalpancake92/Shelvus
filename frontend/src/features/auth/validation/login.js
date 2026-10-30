@@ -35,7 +35,7 @@ export const validateLogin = (loginFormValues) => {
 
     const errorMsgs = {
         email: "Please enter a valid email address.",
-        password: "Please enter a valid password"
+        password: "Please enter a valid password."
     }
 
     const loginErrs = {};

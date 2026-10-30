@@ -66,6 +66,13 @@ const icons = {
             <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
         </>
     ),
+    person: (
+        <>
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="10" r="3" />
+            <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+        </>
+    ),
     barChart: (
         <>
             <path d="M3 3v18h18" />

@@ -32,6 +32,7 @@ It's also a full-stack learning project: a React frontend and an Express + SQLit
 | 🔐 | **Accounts** | Register, log in and log out. You stay logged in with a session cookie, the register form validates input before it's sent, and login tells you whether your details were wrong or the server had a problem. | ✅ Working |
 | 🧭 | **App layout** | Once you're logged in, every page shares one navbar, so Home, Browse, Borrow, Return and Account are a click away. | ✅ Working |
 | 📖 | **Book catalogue** | Add, find, update and remove books. Each book has a title, genre and publication year. | 🛠️ API done, UI in progress |
+| 🖼️ | **Book covers** | Every book can have a cover image. Images are stored on a CDN so they load quickly, and the database keeps each book's image URL. | 📝 Planned |
 | 🔎 | **Browse & search** | Search the collection and filter by genre, author or publication year. | 🛠️ In progress |
 | 🔄 | **Borrow & return** | Borrow an available book and return it when you're done. Due dates are tracked automatically. | 🛠️ Database ready, routes in progress |
 | 👤 | **Your library** | See your current loans, due dates and full borrowing history in one place. | 📝 Planned |
@@ -215,6 +216,7 @@ Shelvus/
 - [x] Shared navbar layout for logged-in pages
 - [ ] Home page dashboard
 - [ ] Borrow and return routes and pages
+- [ ] Book cover images served from a CDN, with URLs stored in the database
 - [ ] Search and filter in the UI
 - [ ] Account page with loan history
 - [ ] Reading insights

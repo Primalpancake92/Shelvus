@@ -30,13 +30,21 @@ It's also a full-stack learning project: a React frontend and an Express + SQLit
 | | Feature | What it does | Status |
 |---|---|---|---|
 | 🔐 | **Accounts** | Register, log in and log out. You stay logged in with a session cookie, the register form validates input before it's sent, and login tells you whether your details were wrong or the server had a problem. | ✅ Working |
-| 🧭 | **App layout** | Once you're logged in, every page shares one navbar, so Home, Browse, Borrow, Return and Account are a click away. | ✅ Working |
-| 📖 | **Book catalogue** | Add, find, update and remove books. Each book has a title, genre and publication year. | 🛠️ API done, UI in progress |
+| 🧭 | **App layout** | Logged-in pages share a navbar linking Home, Browse, Borrow and Return. The account icon and dropdown are styled and can be toggled; its final actions and outside-click behaviour are still being built. | 🛠️ Core layout working |
+| 📖 | **Book catalogue** | Add, find, update and remove books. Each book has a title, genre and publication year. | 🧱 API done; UI pending |
 | 🖼️ | **Book covers** | Every book can have a cover image. Images are stored on a CDN so they load quickly, and the database keeps each book's image URL. | 📝 Planned |
-| 🔎 | **Browse & search** | Search the collection and filter by genre, author or publication year. | 🛠️ In progress |
-| 🔄 | **Borrow & return** | Borrow an available book and return it when you're done. Due dates are tracked automatically. | 🛠️ Database ready, routes in progress |
+| 🔎 | **Browse & search** | Search the collection and filter by genre, author or publication year. | 🧱 Page scaffolded |
+| 🔄 | **Borrow & return** | Borrow an available book and return it when you're done. Due dates are tracked automatically. | 🧱 Database ready; API and UI pending |
 | 👤 | **Your library** | See your current loans, due dates and full borrowing history in one place. | 📝 Planned |
 | 📊 | **Reading insights** | Books borrowed, returns, and your most-read genres at a glance. | 📝 Planned |
+
+## Current progress
+
+Shelvus currently has a working landing page and authentication flow backed by Express sessions. The backend includes user and book endpoints, sample data, and the relational borrowing schema with database-level loan rules.
+
+The logged-in frontend structure is now in place. Home, Browse, Borrow, Return and Account routes render inside a shared layout and navbar. The new account dropdown has a filled profile icon, translucent popup styling and toggle behaviour; its real menu destinations, outside-click handling and final transition are the next pieces to finish.
+
+The feature pages are still early scaffolds. Home, Browse, Borrow and Return currently show the shared visual background, while Account contains an initial form. Catalogue browsing, borrowing workflows, loan history and dashboard content have not yet been connected to the API.
 
 ### Built-in rules for borrowing
 
@@ -122,6 +130,15 @@ npm run dev
 
 Open **http://localhost:5173** in your browser.
 
+After dependencies have been installed, you can also start each side from the project root in separate terminals:
+
+```bash
+bash start_backend.sh
+bash start_frontend.sh
+```
+
+These helper scripts copy each `.env.example` to `.env` before starting its development server.
+
 The frontend's `.env` holds `VITE_API_URL`, the address of the backend (`http://127.0.0.1:3000` by default). If you change the backend's `PORT`, change this to match. Anything in this file ends up in the browser, so never put secrets in it.
 
 ### 4. Log in
@@ -168,11 +185,11 @@ The full list is in [`backend/src/Database/userData.js`](backend/src/Database/us
 | `/` | Landing page | |
 | `/login` | Log in | |
 | `/register` | Create an account | |
-| `/home` | Your home page (being rebuilt) | ✅ |
-| `/browse` | Browse the catalogue (in progress) | ✅ |
-| `/borrow` | Borrow a book (in progress) | ✅ |
-| `/return` | Return a book (in progress) | ✅ |
-| `/account` | Your account | ✅ |
+| `/home` | Dashboard shell with the shared background | ✅ |
+| `/browse` | Catalogue page shell; search UI pending | ✅ |
+| `/borrow` | Borrowing page shell; workflow pending | ✅ |
+| `/return` | Return page shell; workflow pending | ✅ |
+| `/account` | Basic account form scaffold | ✅ |
 
 Pages marked ✅ sit inside `UserLayout`, which adds the shared navbar.
 
@@ -204,7 +221,9 @@ Shelvus/
 │       │   └── users/        # User hooks
 │       ├── hooks/            # Shared hooks (useForm)
 │       └── lib/              # API client, icons and helpers
-└── fixes/                    # Known issues still to sort out
+├── start_backend.sh              # Start the backend from the project root
+├── start_frontend.sh             # Start the frontend from the project root
+└── fixes/                        # Known issues still to sort out
 ```
 
 ## Roadmap
@@ -214,6 +233,8 @@ Shelvus/
 - [x] Borrowing table with loan rules
 - [x] Landing page and design theme
 - [x] Shared navbar layout for logged-in pages
+- [x] Account icon and dropdown popup styling
+- [ ] Finish account dropdown actions, transition and outside-click handling
 - [ ] Home page dashboard
 - [ ] Borrow and return routes and pages
 - [ ] Book cover images served from a CDN, with URLs stored in the database

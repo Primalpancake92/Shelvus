@@ -1,5 +1,6 @@
 import Icon from "../../components/ui/Icon";
 import { NavLink } from "react-router-dom";
+import DropDownMenu from "./DropDownMenu"
 
 const navLinks = [
     { id: 1, to: "/home", name: "Home" },
@@ -34,9 +35,9 @@ export default function NavBar() {
                 ))}
             </center>
 
-            <right classname="flex items-center">
-                
-            </right>
+            <div className="flex items-center">
+                <DropDownMenu />
+            </div>
         </nav>
     )
 }

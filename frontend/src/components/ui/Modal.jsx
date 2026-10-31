@@ -33,7 +33,8 @@ export default function Modal ({ modalName, loading, error, userOperation,
                 </div>
                 <span>
                     {userOperation ?
-                        <span>
+                        <span className="flex justify-center items-center
+                        gap-3">
                             <button onClick={() => { navigate("/") }}
                             className="mt-2 rounded-full bg-primary px-8
                             py-3 font-semibold text-background hover:bg-[#587464]
@@ -43,9 +44,9 @@ export default function Modal ({ modalName, loading, error, userOperation,
                             </button>
                             <button onClick={() => { navigate("/login") }} 
                             className="mt-2 rounded-full bg-secondary px-8
-                            py-3 font-semibold  border-primary text-lg
-                            hover:bg-secondary transition-colors duration-300
-                            hover:cursor-pointer">
+                            py-3 font-semibold text-lg hover:bg-secondary 
+                            transition-colors duration-300 hover:cursor-pointer 
+                            hover:">
                                 Login
                             </button>
                         </span>

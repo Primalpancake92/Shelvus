@@ -67,11 +67,10 @@ const icons = {
         </>
     ),
     person: (
-        <>
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="12" cy="10" r="3" />
-            <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
-        </>
+        <g fill="currentColor" stroke="none" transform="translate(0 1.1) scale(1 0.91)">
+            <ellipse cx="12" cy="6.5" rx="4.8" ry="5.1" />
+            <path d="M8.4 11.9C4.6 12.6 3 15.9 3 18.3C3 20.6 7 21.5 12 21.5S21 20.6 21 18.3C21 15.9 19.4 12.6 15.6 11.9C13.5 13.3 10.5 13.3 8.4 11.9Z" />
+        </g>
     ),
     barChart: (
         <>

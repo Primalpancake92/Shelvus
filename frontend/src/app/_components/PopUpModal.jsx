@@ -9,7 +9,7 @@ export default function PopUpModal({ listOptions }) {
         bg-accent/40 backdrop-blur-lg p-6 w-60 h-50 gap-5 justify-center">
             {listOptions.map((option) => (
                 <NavLink key={option.id} to={option.to} className="py-1
-                 border border-black">
+                border border-black">
                     {option.name}
                 </NavLink>
             ))}

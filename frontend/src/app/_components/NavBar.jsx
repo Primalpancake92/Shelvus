@@ -16,7 +16,7 @@ export default function NavBar() {
             <header className="flex items-center gap-5">
                 <div className="flex rounded-full bg-secondary w-13 h-13
                 items-center justify-center">
-                    <Icon name="book" className="w-8 h-8"/>
+                    <Icon name="book" className="w-10"/>
                 </div>
                 <span className="text-2xl font-bold">Shelvus</span>
             </header>

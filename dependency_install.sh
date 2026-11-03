@@ -8,4 +8,6 @@ echo "Installing backend dependencies..."
 cd ../backend
 npm ci
 
+npm audit fix
+
 echo "Setup complete!"

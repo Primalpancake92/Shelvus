@@ -24,6 +24,8 @@ const loginUser = async (req, res) => {
 
         req.session.email = user.email;
         req.session.username = user.username;
+        req.session.firstName = user.first_name;
+        req.session.lastName = user.last_name;
 
         return req.session.save((err) => {
             if (err) {
@@ -39,6 +41,8 @@ const loginUser = async (req, res) => {
                 user: {
                     session: {
                         email: req.session.email,
+                        firstName: req.session.firstName,
+                        lastName: req.session.lastName,
                         username: req.session.username
                     }
                 }

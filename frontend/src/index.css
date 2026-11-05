@@ -82,6 +82,7 @@ body {
      its content instead of filling the window. */
   width: 100%;
   height: 100vh;
+  margin: 0;
 }
 
 /* Only the landing page is laid out on a fixed 1500px column. */

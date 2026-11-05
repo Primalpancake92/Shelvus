@@ -1,5 +1,6 @@
 import Icon from "../../components/ui/Icon";
 import { NavLink } from "react-router-dom";
+import useGetMe from "../../features/users/hooks/useGetMe";
 import DropDownMenu from "./DropDownMenu"
 
 const navLinks = [
@@ -10,24 +11,30 @@ const navLinks = [
 ];
 
 export default function NavBar() {
+    const { me, loading, error } = useGetMe();
+
     return (
-        <nav className="relative w-screen flex py-5 px-10 z-1 items-center
-        justify-between">
-            <header className="flex items-center gap-5">
-                <div className="flex rounded-full bg-secondary w-13 h-13
+        <nav className="relative w-screen flex py-5 px-5 z-1 items-center
+        h-20 justify-evenly">
+            <header className="flex items-center gap-5 mr-auto">
+                <div className="flex rounded-full bg-secondary w-12 h-12
                 items-center justify-center">
-                    <Icon name="book" className="w-10"/>
+                    <Icon name="book" className="w-8"/>
                 </div>
                 <span className="text-2xl font-bold">Shelvus</span>
             </header>
 
-            <center className="flex items-center justify-evenly gap-10 mx-5">
+            <center className="flex items-center mr-auto gap-3
+            rounded-full px-2 py-2 bg-white backdrop-blur-lg h-12">
                 {navLinks.map((link) => (
                     <NavLink key={link.id} to={link.to} className=
                     {({ isActive }) => (
-                        `${isActive ? "text-accent" : "text-primary"}
-                        text-2xl font-normal
-                        hover:text-accent transition-all duration-300
+                        `${isActive ? `flex 
+                            items-center justify-center
+                            text-foreground bg-secondary`
+                        : "text-primary"}
+                        text-lg font-normal px-3 py-1 rounded-full
+                        hover:text-foreground    transition-all duration-300
                         ease-in-out`
                     )}>
                         {link.name}
@@ -36,8 +43,18 @@ export default function NavBar() {
             </center>
 
             <div className="flex items-center">
+                { !loading && me ?
+                    <p className="mr-5 text-black">
+                        {me.first_name} {me.last_name}
+                    </p>
+                    : 
+                    <p className="mr-5">
+                        User not found
+                    </p>
+                }
                 <DropDownMenu />
             </div>
         </nav>
     )
 }
+

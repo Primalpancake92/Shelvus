@@ -51,6 +51,38 @@ const findUserByEmail = async (req, res) => {
     }
 };
 
+const getUserBySession = async (req, res) => {
+    const { email } = req.session;
+
+    if (!email) {
+        return res.status(400).json({
+            message: "No email was found in the session."
+        });
+    }
+
+    try {
+        const user = await User.findByEmail(email);
+
+        if (!user) {
+            return res.status(400).json({
+                message: `No user was found with the email ${email}`
+            });
+        }
+
+        return res.status(200).json({
+            email: user.email,
+            first_name: user.first_name,
+            last_name: user.last_name
+        });
+        
+    } catch (err) {
+        return res.status(500).json({
+            message: "Server could not process this request.",
+            error: err.message
+        });
+    }
+}
+
 const updateUser = async (req, res) => {
     const {
         email, first_name, last_name, 
@@ -123,12 +155,12 @@ const deleteUser = async (req, res) => {
             error: err.message
         });
     }
-
 };
 
 const userController = {
     getAllUsers,
     findUserByEmail,
+    getUserBySession,
     updateUser,
     deleteUser
 };

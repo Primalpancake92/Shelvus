@@ -1,15 +1,18 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 
-export default function PopUpModal({ listOptions }) {
-    const [ active, setActive ] = useState(false); 
-
+export default function PopUpModal({ listOptions, onClose, isOpen }) { 
     return (
-        <div className="absolute right-0 top-full mt-2 flex flex-col rounded-3xl
-        bg-accent/40 backdrop-blur-lg p-6 w-60 h-50 gap-5 justify-center">
+        <div className={`absolute right-0 top-full mt-5 flex flex-col rounded-4xl
+        bg-white backdrop-blur-lg p-4 w-60 gap-3 justify-center 
+        transition-all duration-300 ease-in-out shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] 
+        shadow-grey-500
+        ${isOpen
+            ? "visible scale-100 opacity-100"
+            : "invisible pointer-events-none scale-99 opacity-0"
+        }`}>
             {listOptions.map((option) => (
-                <NavLink key={option.id} to={option.to} className="py-1
-                border border-black">
+                <NavLink key={option.id} to={option.to} onClick={onClose}
+                className="py-2 bg-secondary px-3 rounded-full ">
                     {option.name}
                 </NavLink>
             ))}

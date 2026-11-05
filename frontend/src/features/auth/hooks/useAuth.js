@@ -36,7 +36,9 @@ export default function useAuth() {
                 throw new Error(
                     `There are there no users with email ${email}`
                 )
-            }
+            } 
+
+            console.log(data);
 
             setUser(data);
 

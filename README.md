@@ -30,7 +30,7 @@ It's also a full-stack learning project: a React frontend and an Express + SQLit
 | | Feature | What it does | Status |
 |---|---|---|---|
 | 🔐 | **Accounts** | Register, log in and log out. You stay logged in with a session cookie, the register form validates input before it's sent, and login tells you whether your details were wrong or the server had a problem. | ✅ Working |
-| 🧭 | **App layout** | Logged-in pages share a navbar linking Home, Browse, Borrow and Return. The account icon and dropdown are styled and can be toggled; its final actions and outside-click behaviour are still being built. | 🛠️ Core layout working |
+| 🧭 | **App layout** | Logged-in pages share a navbar linking Home, Browse, Borrow and Return. The navbar displays the current user's name, and the account dropdown supports toggling, outside-click closing and animated transitions. | 🛠️ Core layout working |
 | 📖 | **Book catalogue** | Add, find, update and remove books. Each book has a title, genre and publication year. | 🧱 API done; UI pending |
 | 🖼️ | **Book covers** | Every book can have a cover image. Images are stored on a CDN so they load quickly, and the database keeps each book's image URL. | 📝 Planned |
 | 🔎 | **Browse & search** | Search the collection and filter by genre, author or publication year. | 🧱 Page scaffolded |
@@ -42,9 +42,9 @@ It's also a full-stack learning project: a React frontend and an Express + SQLit
 
 Shelvus currently has a working landing page and authentication flow backed by Express sessions. The backend includes user and book endpoints, sample data, and the relational borrowing schema with database-level loan rules.
 
-The logged-in frontend structure is now in place. Home, Browse, Borrow, Return and Account routes render inside a shared layout and navbar. The new account dropdown has a filled profile icon, translucent popup styling and toggle behaviour; its real menu destinations, outside-click handling and final transition are the next pieces to finish.
+The logged-in frontend structure is now in place. Home, Browse, Borrow, Return and Account routes render inside a shared layout and navbar. The navbar fetches and displays the current user's name. The account dropdown has a filled profile icon, popup styling, animated transitions and outside-click handling; its Settings, History and Logout destinations still need their routes and behaviour.
 
-The feature pages are still early scaffolds. Home, Browse, Borrow and Return currently show the shared visual background, while Account contains an initial form. Catalogue browsing, borrowing workflows, loan history and dashboard content have not yet been connected to the API.
+The Home page now includes a welcome section and an initial dashboard with placeholder statistics. Browse, Borrow and Return remain early scaffolds, while Account contains an initial form. Catalogue browsing, borrowing workflows, loan history and dashboard statistics have not yet been connected to the API.
 
 ### Built-in rules for borrowing
 
@@ -211,10 +211,11 @@ Shelvus/
 │   ├── .env.example          # VITE_API_URL
 │   └── src/
 │       ├── app/              # One folder per page (page.jsx) plus AppRouter
-│       │   └── _components/  # Pieces used by the landing page and navbar
+│       │   ├── _components/  # Pieces used by the landing page, navbar and account menu
+│       │   └── home/components/ # Welcome section and dashboard statistics
 │       ├── components/
 │       │   ├── layout/       # UserLayout, backgrounds, nav
-│       │   └── ui/           # Small reusable pieces (Field, Label, Modal, Icon)
+│       │   └── ui/           # Small reusable pieces (Field, Label, Modal, ReusableModal, Icon)
 │       ├── features/         # Code grouped by feature
 │       │   ├── auth/         # Login/register forms, hooks and validation
 │       │   ├── books/        # Book components
@@ -234,8 +235,9 @@ Shelvus/
 - [x] Landing page and design theme
 - [x] Shared navbar layout for logged-in pages
 - [x] Account icon and dropdown popup styling
-- [ ] Finish account dropdown actions, transition and outside-click handling
-- [ ] Home page dashboard
+- [x] Account dropdown transition and outside-click handling
+- [ ] Account dropdown actions for Settings, History and Logout
+- [ ] Home page dashboard with welcome section and placeholder statistics (in progress)
 - [ ] Borrow and return routes and pages
 - [ ] Book cover images served from a CDN, with URLs stored in the database
 - [ ] Search and filter in the UI

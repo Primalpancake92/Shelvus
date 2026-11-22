@@ -4,7 +4,7 @@ import { API_URL } from "../../../lib/api";
 export default function useGetMe () {
     const [me, setMe] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);  
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchMe = async () => {

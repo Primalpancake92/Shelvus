@@ -2,7 +2,7 @@ import { useState } from "react";
 import { API_URL } from "../../../lib/api";
 
 export default function useRegister() {
-    const [ loading, setLoading ] = useState(null);
+    const [ loading, setLoading ] = useState(false);
     const [ error, setError ] = useState(false);
     const [ userRegistered, setUserRegistered ] = useState(false);
 
@@ -11,7 +11,6 @@ export default function useRegister() {
     ) => {
         setLoading(true);
         setError(false);
-        setUserRegistered(false);
         let success = true;
 
         // making a fetch call on the register endpoint.
@@ -40,7 +39,7 @@ export default function useRegister() {
             }
 
             if (!data) {
-                throw new error("Registration failed.");
+                throw new Error("Registration failed.");
             }
             
             setUserRegistered(true);

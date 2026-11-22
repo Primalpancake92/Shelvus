@@ -3,24 +3,23 @@ import { API_URL } from "../../../lib/api";
 
 export default function useAuth() {
     const [ loading, setLoading ] = useState(false);
-    const [ error, setError ] = useState(null);
+    const [ error, setError ] = useState(false);
     const [ user, setUser ] = useState({});
 
     const loginUser = async (email, password) => {
         try {
             setLoading(true);
+            setError(false);
 
-            const response = await fetch(`${API_URL}/user/login`,
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        "email": email,
-                        "password": password
-                    }),
-                    credentials: "include"
-                }
-            );
+            const response = await fetch(`${API_URL}/user/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    "email": email,
+                    "password": password
+                }),
+                credentials: "include"
+            });
 
             const data = await response.json();
 
@@ -37,8 +36,6 @@ export default function useAuth() {
                     `There are there no users with email ${email}`
                 )
             } 
-
-            console.log(data);
 
             setUser(data);
 

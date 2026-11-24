@@ -173,7 +173,14 @@ const icons = {
             <path d="M16 8 2 22M17.5 15H9" />
         </>
     ),
-    chevronDown: <path d="m6 9 6 6 6-6" />
+    chevronDown: <path d="m6 9 6 6 6-6" />,
+    logOut: (
+        <>
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <path d="m16 17 5-5-5-5" />
+            <path d="M21 12H9" />
+        </>
+    )
 };
 
 export default icons;

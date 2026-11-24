@@ -4,10 +4,10 @@ import PopUpModal from "./PopUpModal";
 import useLogout from "../../features/auth/hooks/useLogout";
 
 const accountOptions = [
-    { id: 1, type: "page", to: "/account", name: "My Account" },
-    { id: 2, type: "page", to: "/settings", name: "My Settings" },
-    { id: 3, type: "page", to: "/history", name: "History" },
-    { id: 4, type: "action", action: "logout", name: "Logout"}
+    { id: 1, type: "page", to: "/account", name: "My Account", icon: "user" },
+    { id: 2, type: "page", to: "/settings", name: "My Settings", icon: "settings" },
+    { id: 3, type: "page", to: "/history", name: "History", icon: "clock" },
+    { id: 4, type: "action", action: "logout", name: "Logout", icon: "logOut" }
 ];
 
 
@@ -28,10 +28,6 @@ export default function DropDownMenu({ accountName }) {
     const { logout, loading, error } = useLogout();
     const [ clickedAccount, setClickedAccount ] = useState(false);
     const menuRef = useRef(null);
-    const actions = {
-        logout: logout
-    }
-
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -55,8 +51,8 @@ export default function DropDownMenu({ accountName }) {
             duration-50 ease-in-out" onClick={() => setClickedAccount(!clickedAccount)}>
                 <Icon name="person" className="w-8 text-white" />
             </div>
-            <PopUpModal listOptions={accountOptions} actions={actions}
-            onClose={() => setClickedAccount(false)} isOpen={clickedAccount}/>
+            <PopUpModal listOptions={accountOptions} logout={logout} loading={loading}
+            error={error} onClose={() => setClickedAccount(false)} isOpen={clickedAccount}/>
         </div>
     );
 }

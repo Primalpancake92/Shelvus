@@ -237,6 +237,7 @@ Shelvus/
 - [x] Account icon and dropdown popup styling
 - [x] Account dropdown transition and outside-click handling
 - [ ] Account dropdown actions for Settings, History and Logout
+- [ ] Protected routes: send logged-out users to the login page instead of showing logged-in pages (e.g. pressing Back after logging out)
 - [ ] Home page dashboard with welcome section and placeholder statistics (in progress)
 - [ ] Borrow and return routes and pages
 - [ ] Book cover images served from a CDN, with URLs stored in the database

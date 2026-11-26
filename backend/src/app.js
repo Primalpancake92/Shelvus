@@ -1,16 +1,13 @@
 const path = require("path");
 
-// Loads PORT and CLIENT_URL from backend/.env (built into Node, no package needed).
 process.loadEnvFile(path.join(__dirname, "../.env"));
 
 const express = require("express");
 const db = require("./config/database_conn");
 const session = require("express-session");
-const cors = require("cors")
-
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT || "3000";
-
 require("./Database/init");
 
 app.use(cors({

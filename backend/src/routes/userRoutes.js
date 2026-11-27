@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 const userRouter = express.Router();
-const userController = require("../Controllers/User/userController");
-const userAuthController = require("../Controllers/User/userAuthController");
+import userController from "../Controllers/User/userController.js";
+import userAuthController from "../Controllers/User/userAuthController.js";
 
 // This is a GET method that routes to the route to fetch all users in 
 // the system.
@@ -37,4 +37,4 @@ userRouter.delete("/:id", (req, res) => {
     res.send("This is the delete method for the user");
 });
 
-module.exports = userRouter;
+export default userRouter;

@@ -1,4 +1,4 @@
-const db = require("../config/database_conn");
+import db from "../config/database_conn.js";
 
 class UserModel {
     static createNewUser({
@@ -101,4 +101,4 @@ class UserModel {
     }
 }
 
-module.exports = UserModel;
+export default UserModel;

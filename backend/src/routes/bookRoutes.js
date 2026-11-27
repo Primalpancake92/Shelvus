@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 const bookRouter = express.Router();
-const bookController = require("../Controllers/Book/bookController");
+import bookController from "../Controllers/Book/bookController.js";
 
 // This is the POST HTTP method route
 bookRouter.post("/add-book", bookController.addBook);
@@ -14,4 +14,4 @@ bookRouter.put("/update-book", bookController.updateBook);
 // This is the DELETE HTTP method
 bookRouter.delete("/delete-book", bookController.deleteBook);
 
-module.exports = bookRouter;
+export default bookRouter;

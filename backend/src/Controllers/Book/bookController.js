@@ -1,4 +1,4 @@
-const Book = require("../../Models/bookModel");
+import Book from "../../Models/bookModel.js";
 
 const addBook = (req, res) => {
     const { title, genre, publication_year } = req.body;
@@ -23,8 +23,7 @@ const addBook = (req, res) => {
                 id: `${bookAdded.id}`,
                 title: `${bookAdded.title}`,
                 genre: `${bookAdded.genre}`,
-                publication_year: `${bookAdded.publication_year}`,
-                availability: `${bookAdded.available}`
+                publication_year: `${bookAdded.publication_year}`
             }
         });
     } catch (err) {
@@ -61,8 +60,7 @@ const findBookByTitle = (req, res) => {
             message: {
                 title: book.title,
                 genre: book.genre,
-                publication_year: book.publication_year,
-                availability: book.available
+                publication_year: book.publication_year
             }
         });
     } catch (err) {
@@ -105,8 +103,7 @@ const updateBook = (req, res) => {
                 id: book.id,
                 title: book.title,
                 genre: book.genre,
-                publication_year: book.publication_year,
-                availability: book.available
+                publication_year: book.publication_year
             }
         });
     } catch (err) {
@@ -160,4 +157,4 @@ const bookController = {
     deleteBook
 };
 
-module.exports = bookController;
+export default bookController;

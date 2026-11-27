@@ -1,11 +1,11 @@
-const fs = require("fs");
-const db = require("../config/database_conn");
-const path = require("path");
-const userData = require("./userData");
-const bookData = require("./bookData");
+import fs from "fs";
+import db from "../config/database_conn.js";
+import path from "path";
+import userData from "./userData.js";
+import bookData from "./bookData.js";
 
 const schema = fs.readFileSync(
-    path.join(__dirname, "schema.sql"),
+    path.join(import.meta.dirname, "schema.sql"),
     "utf8"
 );
 
@@ -41,15 +41,12 @@ const seedBooks = () => {
     `)
 
     const prepStmt = db.prepare(`
-        INSERT INTO Book (id, title, genre, publication_year,
-        available) VALUES (?, ?, ?, ?, ?)
+        INSERT INTO Book (id, title, genre, publication_year)
+        VALUES (?, ?, ?, ?)
     `);
 
-    for (const {id, title, genre, publication_year,
-        available
-    } of bookData) {
-        prepStmt.run(id, title, genre, publication_year,
-        available);
+    for (const {id, title, genre, publication_year} of bookData) {
+        prepStmt.run(id, title, genre, publication_year);
     }
 };
 

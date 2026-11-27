@@ -1,5 +1,5 @@
-const express = require("express");
+import express from "express";
 const borrowRoutes = express.Router();
 
 
-module.exports = borrowRoutes;
+export default borrowRoutes;

@@ -1,14 +1,17 @@
-const path = require("path");
+// Must stay the first import: loads .env before any other module reads it.
+import "./config/env.js";
 
-process.loadEnvFile(path.join(__dirname, "../.env"));
+import express from "express";
+import db from "./config/database_conn.js";
+import session from "express-session";
+import cors from "cors";
+import "./Database/init.js";
+import userRoutes from "./routes/userRoutes.js";
+import bookRoutes from "./routes/bookRoutes.js";
+import testS3Route from "./routes/testS3Route.js";
 
-const express = require("express");
-const db = require("./config/database_conn");
-const session = require("express-session");
-const cors = require("cors");
 const app = express();
 const port = process.env.PORT || "3000";
-require("./Database/init");
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
@@ -26,8 +29,9 @@ app.use(session({
     },
 }));
 
-app.use("/user", require("./routes/userRoutes"));
-app.use("/book", require("./routes/bookRoutes"));
+app.use("/user", userRoutes);
+app.use("/book", bookRoutes);
+app.use("/s3Test-routes", testS3Route);
 
 const serverConn = app.listen(port, () => {
     console.log("The server has successfully connected.");

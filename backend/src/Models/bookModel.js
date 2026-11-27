@@ -1,4 +1,4 @@
-const db = require("../config/database_conn");
+import db from "../config/database_conn.js";
 
 class bookModel {
     // This is the read operation that returns all books
@@ -83,4 +83,4 @@ class bookModel {
     }
 }
 
-module.exports = bookModel;
+export default bookModel;

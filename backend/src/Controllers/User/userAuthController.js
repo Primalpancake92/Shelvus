@@ -1,4 +1,4 @@
-const User = require("../../Models/userModel");
+import User from "../../Models/userModel.js";
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -174,4 +174,4 @@ const userAuthController = {
     logout
 };
 
-module.exports = userAuthController;
+export default userAuthController;

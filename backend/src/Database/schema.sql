@@ -62,11 +62,6 @@ CREATE TABLE IF NOT EXISTS BookCopy (
         ON DELETE CASCADE
 );
 
--- Associative entity resolving the many-to-many relationship between
--- User and BookCopy. One row == one loan.
--- A surrogate "id" (instead of a composite PK on user_id + copy_id) is
--- used on purpose so the same user can borrow the same copy many times,
--- which keeps a full borrowing history.
 CREATE TABLE IF NOT EXISTS Loan (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
